@@ -1,0 +1,101 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/PferdeReiter/Scripts/main/UI%20%7C%20by%20Aztup"))();
+
+
+local Click = library:CreateSection("Function");
+local Egg = library:CreateSection("Egg");
+local TP = library:CreateSection("Teleport");
+local Misc = library:CreateSection("Misc");
+local Credits = library:CreateSection("Credits");
+
+
+--Alle Functioon
+--Gamer2:Toggle("B");
+--Gamer2:Box("C");
+--Gamer2:ColorPicker("D");
+--Gamer2:Dropdown("E", {"A", "B", "C"});
+--Gamer2:Button("Gamer Button");
+--Gamer2:Laber("Nachricht");
+
+--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Click:Label("------------------------------------Function------------------------------------")
+Click:Toggle("Auto Click",function(arg)
+    if arg then
+        _G.Click = true 
+        while wait(0.1) and _G.Click do
+game:GetService("ReplicatedStorage").Events.Tap:FireServer()
+       end
+    else
+        _G.Click = false
+    end
+end)
+Click:Toggle("Auto Best Rebirth",function(arg)
+    if arg then
+        _G.Rebirth = true 
+        while wait(0.1) and _G.Rebirth do
+game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(5310000000)
+       end
+    else
+        _G.Rebirth = false
+    end
+end)
+Click:Toggle("Auto Best SRebirth",function(arg)
+    if arg then
+        _G.SRebirth = true 
+        while wait(0.1) and _G.SRebirth do
+game:GetService("ReplicatedStorage").Events.SuperRebirth:FireServer(500)
+       end
+    else
+        _G.SRebirth = false
+    end
+end)
+Click:Toggle("Auto Open Best Egg",function(arg)
+    if arg then
+        _G.Open = true 
+        while wait(0.1) and _G.Open do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1375, 3487, -3136)
+game:GetService("ReplicatedStorage").Events.OpenEgg:FireServer("Super Anime Egg")
+       end
+    else
+        _G.Open = false
+    end
+end)
+
+
+
+Misc:Box('FOV', function(FOV)
+    game:GetService'Workspace'.Camera.FieldOfView = FOV
+end)
+Misc:Box('Speed', function(Speed)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed
+end)
+Misc:Box('Jump Height', function(Jump)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jump
+end)
+
+
+Credits:Label("------------------------------------My Discord------------------------------------")
+Credits:Button("https://discord.gg/EAGgGfPWtg", function()
+setclipboard("https://discord.gg/EAGgGfPWtg")
+end)
+Credits:Label("Click above me to copy it")
+Credits:Label("------------------------------------Owner------------------------------------")
+Credits:Label("PapierLP")
+Credits:Label("")
+Credits:Label("------------------------------------UI Maker------------------------------------")
+Credits:Label("Aztup#9821")
+Credits:Label("")
+Credits:Button("Rejoin Game", function()
+game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
+Credits:Button("Destroy GUI", function()
+game:GetService("CoreGui").ScreenGui:Destroy()
+end)
+
+    --| Anti AFK | 
+    local Virtual = game:service'VirtualUser'
+    game:service'Players'.LocalPlayer.Idled:connect(function()
+        Virtual:CaptureController()
+        Virtual:ClickButton2(Vector2.new())
+        wait(2)
+    end)
+library:Ready();
